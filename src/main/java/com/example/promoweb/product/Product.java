@@ -1,5 +1,6 @@
 package com.example.promoweb.product;
 
+import com.example.promoweb.productcategory.ProductCategory;
 import jakarta.persistence.*;
 
 @Entity
@@ -21,7 +22,8 @@ public class Product {
     private String description;
     private Double price;
     private String imageUrl;
-    private String category;
+    @ManyToOne
+    private ProductCategory category;
 
     public Product() {
     }
@@ -32,7 +34,6 @@ public class Product {
         this.description = description;
         this.price = price;
         this.imageUrl = imageUrl;
-        this.category = category;
     }
 
     public Product(String name, String description, Double price, String imageUrl, String category) {
@@ -40,7 +41,6 @@ public class Product {
         this.description = description;
         this.price = price;
         this.imageUrl = imageUrl;
-        this.category = category;
     }
 
     public Long getId() {
@@ -83,11 +83,11 @@ public class Product {
         this.imageUrl = imageUrl;
     }
 
-    public String getCategory() {
+    public ProductCategory getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(ProductCategory category) {
         this.category = category;
     }
 
