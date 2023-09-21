@@ -17,19 +17,20 @@ public class Product {
             strategy = GenerationType.SEQUENCE,
             generator = "product_sequence"
     )
-    private Long id;
+    private Long product_id;
     private String name;
     private String description;
     private Double price;
     private String imageUrl;
     @ManyToOne
+    @JoinColumn(name = "category_id")
     private ProductCategory category;
 
     public Product() {
     }
 
-    public Product(Long id, String name, String description, Double price, String imageUrl, String category) {
-        this.id = id;
+    public Product(Long product_id, String name, String description, Double price, String imageUrl, String category) {
+        this.product_id = product_id;
         this.name = name;
         this.description = description;
         this.price = price;
@@ -43,12 +44,12 @@ public class Product {
         this.imageUrl = imageUrl;
     }
 
-    public Long getId() {
-        return id;
+    public Long getProduct_id() {
+        return product_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setProduct_id(Long product_id) {
+        this.product_id = product_id;
     }
 
     public String getName() {
@@ -87,6 +88,10 @@ public class Product {
         return category;
     }
 
+    public String getCategoryName() {
+        return category.getName();
+    }
+
     public void setCategory(ProductCategory category) {
         this.category = category;
     }
@@ -94,7 +99,7 @@ public class Product {
     @Override
     public String toString() {
         return "ProductEntity{" +
-                "id=" + id +
+                "id=" + product_id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +

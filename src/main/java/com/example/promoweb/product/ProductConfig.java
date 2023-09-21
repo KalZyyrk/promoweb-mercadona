@@ -7,12 +7,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ProductConfig {
 
-    @Bean
-    CommandLineRunner commandLineRunner(ProductRepository repository) {
-        return args -> {
-          Product product = new Product(1L, "Cerise", "petit fruit rouge", 1.99, "image de cerise", "fruit");
-
-          repository.save(product);
-        };
-    }
+//    @Bean
+//    CommandLineRunner commandLineRunner(ProductRepository repository) {
+//        return args -> {
+//          Product product = new Product(1L, "Cerise", "petit fruit rouge", 1.99, "image de cerise", "fruit");
+//
+//          repository.save(product);
+//        };
+//    }
 }

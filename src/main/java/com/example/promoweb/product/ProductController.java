@@ -22,7 +22,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public void registerNewProduct(@RequestBody Product product) {
+    public void registerNewProduct(@RequestBody Product product) throws Exception {
         productService.addNewProduct(product);
     }
 

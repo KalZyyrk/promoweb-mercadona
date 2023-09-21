@@ -7,12 +7,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ProductCategoryConfig {
 
-    @Bean
-    CommandLineRunner commandLineRunner(ProductCategoryRepository repository) {
-        return args -> {
-            ProductCategory category = new ProductCategory(1L, "fruit");
-
-            repository.save(category);
-        };
-    }
+//    @Bean
+//    CommandLineRunner commandLineRunner(ProductCategoryRepository repository) {
+//        return args -> {
+//            ProductCategory category = new ProductCategory(1L, "fruit");
+//
+//            repository.save(category);
+//        };
+//    }
 }
