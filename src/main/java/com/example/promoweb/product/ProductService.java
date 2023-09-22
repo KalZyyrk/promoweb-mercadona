@@ -2,6 +2,8 @@ package com.example.promoweb.product;
 
 import com.example.promoweb.productcategory.ProductCategory;
 import com.example.promoweb.productcategory.ProductCategoryService;
+import jakarta.persistence.EntityExistsException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,11 +26,11 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public void addNewProduct(Product product) throws Exception {
+    public void addNewProduct(Product product) {
         List<ProductCategory> categoryList = categoryService.getAllCategorie();
 
         if (this.getAllProduct().stream().anyMatch(p -> p.getName().equals(product.getName()))){
-            throw new Exception("Product Already register");
+            throw new EntityExistsException("Product Already register");
         }
 
         if (categoryList.stream().noneMatch(c -> c.getName().equals(product.getCategory().getName()))) {
@@ -42,6 +44,10 @@ public class ProductService {
     }
 
     public void deleteProduct(long id) {
-        productRepository.deleteById(id);
+        if (!productRepository.existsById(id)) {
+            throw new EntityNotFoundException("Item dont exist");
+        } else {
+            productRepository.deleteById(id);
+        }
     }
 }
